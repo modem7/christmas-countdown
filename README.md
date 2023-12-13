@@ -1,6 +1,11 @@
 # Yet Another Christmas Countdown!
 
+[![Build Status](https://drone.modem7.com/api/badges/modem7/christmas-countdown/status.svg)](https://drone.modem7.com/modem7/christmas-countdown)
+
 This is yet another Christmas Countdown website, built in React using Next.js. You can see it live [here](https://yetanotherchristmascountdown.com).
+
+Original repo [here](https://github.com/plbrault/christmas-countdown/).
+
 On December 31, it turns into a New Year countdown.
 
 ## Detailed Behaviour
