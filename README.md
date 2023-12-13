@@ -1,6 +1,9 @@
 # Yet Another Christmas Countdown!
 
+![Docker Pulls](https://img.shields.io/docker/pulls/modem7/christmas-countdown)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/modem7/christmas-countdown/latest)
 [![Build Status](https://drone.modem7.com/api/badges/modem7/christmas-countdown/status.svg)](https://drone.modem7.com/modem7/christmas-countdown)
+[![GitHub last commit](https://img.shields.io/github/last-commit/modem7/christmas-countdown)](https://github.com/modem7/christmas-countdown)
 
 This is yet another Christmas Countdown website, built in React using Next.js. You can see it live [here](https://yetanotherchristmascountdown.com).
 
