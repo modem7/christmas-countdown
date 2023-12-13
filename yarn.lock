@@ -3223,9 +3223,9 @@ react-dom@latest:
     scheduler "^0.20.2"
 
 react-fast-compare@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
-  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
+  integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
 react-is@17.0.2, react-is@^17.0.2:
   version "17.0.2"
@@ -3243,9 +3243,9 @@ react-refresh@0.8.3:
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
 react-snowfall@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-1.1.0.tgz#96f5ecfacc67677c78f47170c1fda57c934f9961"
-  integrity sha512-AhV9EIuOIvYM2XJFpYaEZCqcS4XUmNwsOfImZhzQQ4DTcYuJwJJAehQn6eaCfu3uMPtwb6Ya6musAD7s4BkFZA==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-1.2.1.tgz#68cab6a1d05aa7c3211bce96a3a97977ca7dc57f"
+  integrity sha512-d2UR3nDq3F0DJGaTfJ0QNbBo76UZHtT9wHFj+ePxAl4FgSxWBhxB/Bjn06f5iDBwhgwiZ7CZmv3lwfNvjo6a+w==
   dependencies:
     react-fast-compare "^3.2.0"
 
