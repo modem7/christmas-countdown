@@ -10,7 +10,9 @@ WORKDIR /app
 
 COPY --chown=node . .
 
-RUN yarn && yarn build
+RUN yarn config set cache-folder /root/.yarn # just to be explicit
+RUN --mount=type=cache,mode=0777,target=/root/.yarn yarn cache list
+RUN --mount=type=cache,mode=0777,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn && yarn build
 
 # production stage
 FROM nginxinc/nginx-unprivileged:1.25.2-alpine AS production-stage
