@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "MountainsOfChristmas";
+  font-style: bold;
+  src: url(/fonts/MountainsofChristmas-Regular.ttf);
+}
+
+@font-face {
+  font-family: "AmaticSC";
+  font-style: bold;
+  src: url(/fonts/AmaticSC-Bold.ttf);
+}

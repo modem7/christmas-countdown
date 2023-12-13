@@ -1,0 +1,354 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-image: linear-gradient(to bottom, black, #070026);
+}
+
+#__next {
+  height: 100%;
+}
+
+.countdown-container {
+  height: 100%;
+  width: 90%;
+  margin: auto;
+  color:  #cc2037 ;
+  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 0.25px;
+}
+
+.new-year {
+  color: #4fd125;
+}
+
+.label {
+  font-family: "MountainsOfChristmas";
+  font-weight: bold;
+}
+
+.time-before-next-event, .text-during-event {
+  font-family: "AmaticSC";
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-family: "MountainsOfChristmas";
+  font-size: 0.8rem;
+  
+}
+
+footer a {
+  color: #413a60;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.hide-footer {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #413a60;
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+.hide-footer::before {
+  content: "(";
+}
+
+.hide-footer::after {
+  content: ")";
+}
+
+.hide-footer:hover {
+  cursor: pointer;
+}
+
+footer a:hover {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 300px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.25px;
+  }
+
+  .label, .emojis {
+    font-size: 1.25rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 1.25rem;
+  }
+
+  .text-during-event {
+    font-size: 3rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 0.7px;
+  }
+  
+  .number {
+    font-size: 2.2275rem;
+    -webkit-text-stroke-width: 0.4px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.35px;
+  }
+
+  .label, .emojis {
+    font-size: 1.4rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 1.3rem;
+  }
+
+  .text-during-event {
+    font-size: 4rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 0.8px;
+  }
+  
+  .number {
+    font-size: 3rem;
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 378px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.4px;
+  }
+  
+  .label, .emojis {
+    font-size: 1.5rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 1.5rem;
+  }
+
+  .text-during-event {
+    font-size: 4rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 0.9px;
+  }
+  
+  .number {
+    font-size: 3rem;
+    -webkit-text-stroke-width: 0.6px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 400px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.4px;
+  }
+
+  .label, .emojis {
+    font-size: 1.5rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 1.75rem;
+  }
+
+  .text-during-event {
+    font-size: 4.5rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 1px;
+  }
+  
+  .number {
+    font-size: 3rem;
+    -webkit-text-stroke-width: 0.7px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 500px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.4px;
+  }
+
+  .label, .emojis {
+    font-size: 1.6rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 2rem;
+  }
+
+  .text-during-event {
+    font-size: 5.5rem;
+  }
+  
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 1px;
+  }
+  
+  .number {
+    font-size: 3.25rem;
+    -webkit-text-stroke-width: 0.7px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 600px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.5px;
+  }
+  
+  .label, .emojis {
+    font-size: 2rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 2.5rem;
+  }
+
+  .text-during-event {
+    font-size: 6.5rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 1.25px;
+  }
+  
+  .number {
+    font-size: 3.5rem;
+    -webkit-text-stroke-width: 0.8px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .label, .emojis {
+    font-size: 2rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 2.5rem;
+  }
+
+  .text-during-event {
+    font-size: 7.8rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 1.25px;
+  }
+  
+  .number {
+    font-size: 5rem;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 800px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .label, .emojis {
+    font-size: 2rem;
+  }
+  
+  .time-before-next-event {
+    font-size: 3rem;
+  }
+
+  .text-during-event {
+    font-size: 9rem;
+  }
+
+  .time-before-next-event, .text-during-event {
+    -webkit-text-stroke-width: 1.5px;
+  }
+  
+  .number {
+    font-size: 6rem;
+    -webkit-text-stroke-width: 1.2px;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
+
+@media screen and (min-width: 1200px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .label, .emojis {
+    font-size: 2.5rem;
+  }
+  
+  .time-before-next-event, .text-during-event, .number {
+    -webkit-text-stroke-width: 2px;
+  }
+
+  .time-before-next-event {
+    font-size: 3rem;
+  }
+
+  .text-during-event {
+    font-size: 9rem;
+  }
+  
+  .number {
+    font-size: 9rem;
+  }
+
+  .emojis, .label, .time-before-next-event, .text-during-event, .number {
+    -webkit-text-size-adjust:none;
+  }  
+}
