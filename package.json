@@ -33,6 +33,6 @@
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "gh-pages": "^6.0.0",
-    "serve": "^13.0.2"
+    "serve": "^14.0.0"
   }
 }
