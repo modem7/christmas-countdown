@@ -8,13 +8,16 @@
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
+    "@next/eslint-plugin-next": "latest",
+    "browserslist": "latest",
     "clsx": "latest",
     "luxon": "^3.0.0",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-snowfall": "^2.0.0"
+    "react-snowfall": "^2.1.0",
+    "update-browserslist-db": "latest"
   },
   "scripts": {
     "dev": "next",
@@ -32,7 +35,6 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "gh-pages": "^6.0.0",
     "serve": "^14.0.0"
   }
 }
