@@ -21,11 +21,22 @@ On December 31, it turns into a New Year countdown.
 
 ## Usage
 
-* Install dependencies: `yarn`
-* Run development version: `yarn dev`
-* Build: `yarn build`
-* Serve built version locally: `yarn serve`
-* Deploy: `yarn deploy`
+## Configuration
+
+```bash
+services:
+
+  xmas:
+    image: modem7/christmas-countdown
+    container_name: Xmas-Countdown
+    ports:
+      - 8080:8080
+```
+
+# Tags
+| Tag | Description |
+| :----: | --- |
+| Latest | Latest version |
 
 ## License
 
