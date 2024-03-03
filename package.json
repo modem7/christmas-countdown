@@ -9,7 +9,7 @@
     "@emotion/styled": "latest",
     "@mui/material": "latest",
     "clsx": "latest",
-    "luxon": "^2.1.1",
+    "luxon": "^3.0.0",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
