@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:latest
 
 # build stage
-FROM node:lts-alpine3.19 AS build-stage
+FROM node:20.11-alpine3.19 AS build-stage
 
 # Set environment variables for non-interactive npm installs
 ENV NPM_CONFIG_LOGLEVEL warn
@@ -10,9 +10,15 @@ WORKDIR /app
 
 COPY --chown=node . .
 
-RUN yarn config set cache-folder /root/.yarn # just to be explicit
-RUN --mount=type=cache,mode=0777,target=/root/.yarn yarn cache list
-RUN --mount=type=cache,mode=0777,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn && yarn build
+RUN <<EOF
+    set -xe
+    corepack enable
+    yarn set version stable
+EOF
+
+# RUN yarn config set cache-folder /root/.yarn # just to be explicit
+# RUN --mount=type=cache,mode=0777,target=/root/.yarn yarn cache list
+RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn && yarn build
 
 # production stage
 FROM nginxinc/nginx-unprivileged:1.25.4-alpine AS production-stage
