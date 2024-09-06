@@ -2758,9 +2758,9 @@ react-is@^18.2.0:
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
 react-snowfall@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-2.1.0.tgz#b8c22c182c4e5cd084025c73169a3f399c3dd147"
-  integrity sha512-5nYWmBTJi/rrRRTmE62QLhxSp3sfX9niPP1Ysrd4dkVZLr0fxHTkcqCLQx7BAkclCEq5MWZ7kgIHrqk5Ugq1PA==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-2.1.1.tgz#0ad21415b3256af4522b7264b3ad61be5ba22c7d"
+  integrity sha512-29F2U+skZc8uYYYzVP2Ub4mbc5nPH+0jYr1yXDysaPCnHdl9nVUN3h/ygg6PYw2LH53q6ZQCNfj30kVliaPvBg==
   dependencies:
     react-fast-compare "^3.2.2"
 
