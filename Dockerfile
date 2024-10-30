@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:latest
 
 # build stage
-FROM node:22.10-alpine3.19 AS build-stage
+FROM node:22.11-alpine3.19 AS build-stage
 
 # Set environment variables for non-interactive npm installs
 ENV NPM_CONFIG_LOGLEVEL warn
