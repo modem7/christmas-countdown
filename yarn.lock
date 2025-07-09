@@ -2661,9 +2661,9 @@ lru-cache@^5.1.1:
     yallist "^3.0.2"
 
 luxon@^3.0.0:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.6.1.tgz#d283ffc4c0076cb0db7885ec6da1c49ba97e47b0"
-  integrity sha512-tJLxrKJhO2ukZ5z0gyjY1zPh3Rh88Ej9P7jNrZiHMUXHae1yvI2imgOZtL1TO8TW6biMMKfTtAOoEJANgtWBMQ==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.7.0.tgz#c4f92918f12824cefa658ee2ddbbc2234c00faef"
+  integrity sha512-FWOR5aRqol+wq5WqqCj/zQ4sHIq48T0RdeNHH0oYRRY+Ds11SOSZQ89y11TyhiQ5BLZGJorlcxi4FxgBx0LNtw==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"
