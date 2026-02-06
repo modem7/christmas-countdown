@@ -22,7 +22,7 @@ EOF
 RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn && yarn build
 
 # production stage
-FROM nginxinc/nginx-unprivileged:1.29.3-alpine AS production-stage
+FROM nginxinc/nginx-unprivileged:1.29.4-alpine AS production-stage
 
 USER root
 
