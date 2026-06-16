@@ -27,8 +27,8 @@
     "deploy": "yarn build && yarn addDomain && touch out/.nojekyll && gh-pages -t -d out"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
+    "@babel/core": "^8.0.0",
+    "@babel/eslint-parser": "^8.0.0",
     "eslint": "^10.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
