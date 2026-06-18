@@ -24,6 +24,9 @@ COPY --chown=node css/ css/
 COPY --chown=node scripts/ scripts/
 COPY --chown=node next.config.js ./
 
+RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache \
+    YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn build
+
 # production stage
 FROM nginxinc/nginx-unprivileged:1.31.2-alpine AS production-stage
 
