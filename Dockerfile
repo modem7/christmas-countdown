@@ -16,12 +16,12 @@ RUN corepack enable
 RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache \
     YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn install --immutable
 
-COPY --link --chown=node pages/ pages/
-COPY --link --chown=node public/ public/
-COPY --link --chown=node src/ src/
-COPY --link --chown=node css/ css/
-COPY --link --chown=node scripts/ scripts/
-COPY --link --chown=node next.config.js ./
+COPY --chown=node pages/ pages/
+COPY --chown=node public/ public/
+COPY --chown=node src/ src/
+COPY --chown=node css/ css/
+COPY --chown=node scripts/ scripts/
+COPY --chown=node next.config.js ./
 
 # production stage
 FROM nginxinc/nginx-unprivileged:1.31.2-alpine AS production-stage
