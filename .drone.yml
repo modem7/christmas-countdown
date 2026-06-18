@@ -16,6 +16,13 @@ steps:
       - hadolint --version
       - hadolint Dockerfile*
 
+  - name: Check lockfile
+      image: node:22.12-alpine3.19
+      pull: if-not-exists
+      commands:
+        - corepack enable
+        - yarn install --immutable
+
   - name: latest  
     image: thegeeklab/drone-docker-buildx
     privileged: true
