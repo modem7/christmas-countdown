@@ -9,7 +9,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 WORKDIR /app
 
-COPY --chown=node package.json yarn.lock .yarnrc.yml .yarn ./
+COPY --chown=node package.json yarn.lock .yarnrc.yml ./
+COPY --chown=node .yarn/releases/ .yarn/releases/
 
 RUN corepack enable
 

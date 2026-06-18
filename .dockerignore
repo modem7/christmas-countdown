@@ -4,8 +4,7 @@
 .hadolint.yaml
 .nvmrc
 .wakatime-project
-.yarn
-!.yarn/releases
+.yarn/install-state.gz
 README.md
 coverage
 dist
