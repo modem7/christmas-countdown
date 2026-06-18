@@ -36,5 +36,6 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^7.0.0",
     "serve": "^14.0.0"
-  }
+  },
+  "packageManager": "yarn@4.17.0"
 }
