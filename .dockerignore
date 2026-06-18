@@ -5,6 +5,7 @@
 .nvmrc
 .wakatime-project
 .yarn
+!.yarn/releases
 README.md
 coverage
 dist
