@@ -1,0 +1,91 @@
+when:
+  # Drone's trigger was `event: [custom]` only - no push-triggered builds.
+  # Woodpecker has no direct "custom" event; "manual" is the equivalent
+  # (API/UI-triggered only), so that behavior carries over unchanged.
+  - event: manual
+
+steps:
+  - name: lint-dockerfile
+    image: hadolint/hadolint:latest-alpine
+    commands:
+      - hadolint --version
+      - hadolint Dockerfile*
+
+  - name: check-lockfile
+    image: node:22.12-alpine3.19
+    commands:
+      - corepack enable
+      - yarn install --immutable
+
+  - name: build-and-push
+    image: woodpeckerci/plugin-docker-buildx
+    privileged: true
+    depends_on: [lint-dockerfile, check-lockfile]
+    settings:
+      repo: modem7/christmas-countdown
+      dockerfile: Dockerfile
+      purge: true
+      compress: true
+      build_args:
+        BUILDKIT_INLINE_CACHE: "1"
+      cache_from:
+        - type=registry\,ref=modem7/christmas-countdown:latest
+      platforms: linux/amd64,linux/arm64/v8
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      tags: latest
+
+  - name: pushrm-dockerhub
+    image: chko/docker-pushrm
+    depends_on:
+      - build-and-push
+    environment:
+      DOCKER_USER:
+        from_secret: docker_username
+      DOCKER_PASS:
+        from_secret: docker_password
+      PUSHRM_FILE: README.md
+      PUSHRM_SHORT: Yet another Christmas Countdown website, built in React using Next.js.
+      PUSHRM_TARGET: modem7/christmas-countdown
+    when:
+      - status: [success]
+
+  # CI_PIPELINE_STATUS must stay bare ($VAR, not ${VAR}) - Woodpecker
+  # resolves ${VAR} at compile time, before this value exists
+  # (woodpecker-ci/woodpecker#6826).
+  - name: notify-slack
+    image: alpine
+    depends_on:
+      - build-and-push
+    environment:
+      SLACK_WEBHOOK:
+        from_secret: slack_hook
+    commands:
+      - apk add --no-cache curl jq >/dev/null
+      - COMMIT_SHORT=$(echo "$CI_COMMIT_SHA" | cut -c1-10)
+      - >
+        PAYLOAD=$(jq -n
+        --arg status "$CI_PIPELINE_STATUS"
+        --arg branch "$CI_COMMIT_BRANCH"
+        --arg output "${CI_REPO}#${CI_PIPELINE_NUMBER}"
+        --arg output_url "$CI_PIPELINE_URL"
+        --arg build "$CI_PIPELINE_NUMBER"
+        --arg commit "$COMMIT_SHORT"
+        --arg commit_url "$CI_PIPELINE_FORGE_URL"
+        --arg author "$CI_COMMIT_AUTHOR"
+        --arg message "$CI_COMMIT_MESSAGE"
+        '{attachments:[{color:(if $status == "success" then "good" else "danger" end),fields:[
+        {title:"Status",value:$status,short:true},
+        {title:"Branch",value:$branch,short:true},
+        {title:"Output",value:("<"+$output_url+"|"+$output+">"),short:true},
+        {title:"Build Number",value:$build,short:true},
+        {title:"Commit",value:("<"+$commit_url+"|"+$commit+">"),short:true},
+        {title:"Author",value:$author,short:true},
+        {title:"Commit Message",value:$message,short:false}
+        ]}]}')
+      - >
+        curl -fsS -X POST -H 'Content-type: application/json' --data "$PAYLOAD" "$SLACK_WEBHOOK"
+    when:
+      - status: [success, failure]
