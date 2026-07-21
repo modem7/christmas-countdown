@@ -1,8 +1,25 @@
 when:
-  # Drone's trigger was `event: [custom]` only - no push-triggered builds.
-  # Woodpecker has no direct "custom" event; "manual" is the equivalent
-  # (API/UI-triggered only), so that behavior carries over unchanged.
-  - event: manual
+  # Matches the other repos (docker-rickroll/docker-starwars/Docker-NewYearCountdown/etc.):
+  # push-triggered on master, scoped to what actually gets COPYed into the
+  # image in the Dockerfile, plus manual for on-demand rebuilds.
+  - event: [push, manual]
+    branch: master
+    path:
+      include:
+        - Dockerfile
+        - package.json
+        - yarn.lock
+        - .yarnrc.yml
+        - .yarn/releases/**
+        - pages/**
+        - public/**
+        - src/**
+        - css/**
+        - scripts/**
+        - next.config.js
+        - .woodpecker.yml
+      exclude:
+        - '**/*.test.js'
 
 steps:
   - name: lint-dockerfile
