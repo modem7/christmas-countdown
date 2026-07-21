@@ -21,3 +21,6 @@ out
 
 # Claude Code worktrees
 /.claude/worktrees
+
+# superpowers scratch workspace (progress ledger, task briefs/reports)
+/.superpowers
