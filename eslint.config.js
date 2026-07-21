@@ -55,4 +55,14 @@ module.exports = [
       'import/no-extraneous-dependencies': 'off',
     },
   },
+  {
+    // Vitest/@vitejs/plugin-react/@testing-library/jest-dom expose their
+    // config entry points via package.json "exports" subpaths that
+    // eslint-plugin-import's default resolver doesn't follow.
+    files: ['vitest.config.js', 'vitest.setup.js'],
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+      'import/no-unresolved': 'off',
+    },
+  },
 ];

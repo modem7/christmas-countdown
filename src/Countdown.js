@@ -1,77 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import TreeIcon from './icons/TreeIcon';
+import ChampagneIcon from './icons/ChampagneIcon';
+import FlipDigit from './FlipDigit';
 
-import getTimeToNextEvent from './getTimeToNextEvent';
+function Icons({ isNewYearPhase }) {
+  const Icon = isNewYearPhase ? ChampagneIcon : TreeIcon;
+  return (
+    <span className="icon-row">
+      <Icon className="event-icon" />
+      <Icon className="event-icon" />
+      <Icon className="event-icon" />
+    </span>
+  );
+}
 
-const Emojis = ({ isNewYear, isNewYearsEve }) => (
-  <Box className="emojis">
-    {(isNewYear || isNewYearsEve) ? '🍾🍾🍾' : '🎄🎄🎄'}
-  </Box>
-);
+function FlipNumber({ value }) {
+  return value.split('').map((digit, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <FlipDigit key={index} value={digit} />
+  ));
+}
 
-export default function Countdown() {
-  const [timeToNextEvent, setTimeToNextEvent] = useState(getTimeToNextEvent());
+function accessibleCountdownText({
+  isBeforeChristmas, isNewYearsEve, days, hours, minutes, seconds,
+}) {
+  if (isBeforeChristmas) {
+    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+  }
+  if (isNewYearsEve) {
+    return `${hours} hours ${minutes} minutes ${seconds} seconds`;
+  }
+  return '';
+}
 
-  useEffect(() => {
-    setInterval(() => {
-      const newTimeToNextEvent = getTimeToNextEvent();
-      setTimeToNextEvent(newTimeToNextEvent);
-    }, 100); // interval of 100 instead of 1000 to minimize drift
-  }, []);
-
-  const {
-    nextEvent, days, hours, minutes, seconds, totalSeconds,
-  } = timeToNextEvent;
-
-  const isBeforeChristmas = (nextEvent === 'CHRISTMAS' && totalSeconds > 0);
-  const isChristmas = (nextEvent === 'CHRISTMAS' && totalSeconds === 0);
-  const isHolidays = (nextEvent === 'NEW_YEAR' && days > 0);
-  const isNewYearsEve = (nextEvent === 'NEW_YEAR' && days === 0 && totalSeconds > 0);
-  const isNewYear = (nextEvent === 'NEW_YEAR' && totalSeconds === 0);
+export default function Countdown({
+  isBeforeChristmas,
+  isChristmas,
+  isHolidays,
+  isNewYearsEve,
+  isNewYear,
+  days,
+  hours,
+  minutes,
+  seconds,
+}) {
+  const isNewYearPhase = isNewYearsEve || isNewYear;
 
   return (
-    <Stack
-      className={`countdown-container ${(isNewYearsEve || isNewYear) ? 'new-year' : ''}`}
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      spacing={2}
-    >
-      <Box className="label">
+    <div className={`countdown-container ${isNewYearPhase ? 'new-year' : ''}`}>
+      <div className="label">
         {isBeforeChristmas ? 'Time Left Until Christmas' : ''}
         {isNewYearsEve ? 'Time Left Until New Year' : ''}
-      </Box>
-      <Emojis isNewYear={isNewYear} isNewYearsEve={isNewYearsEve} />
+      </div>
+      <Icons isNewYearPhase={isNewYearPhase} />
       <span className="text-during-event">
         {isChristmas ? 'Merry Christmas!' : ''}
         {isHolidays ? 'Happy Holidays!' : ''}
         {isNewYear ? 'Happy New Year!' : ''}
       </span>
-      <Box className="time-before-next-event">
+      <div className="time-before-next-event">
         {
           (isBeforeChristmas || isNewYearsEve) ? (
             <>
-              {
-                (nextEvent === 'CHRISTMAS') ? (
-                  <>
-                    <span className="number">{String(days).padStart(2, '0')}</span>
-                    &nbsp;days&nbsp;
-                  </>
-                ) : ''
-              }
-              <span className="number">{String(hours).padStart(2, '0')}</span>
-              &nbsp;hours&nbsp;
-              <span className="number">{String(minutes).padStart(2, '0')}</span>
-              &nbsp;minutes&nbsp;
-              <span className="number">{String(seconds).padStart(2, '0')}</span>
-              &nbsp;seconds
+              <span className="sr-only">
+                {accessibleCountdownText({
+                  isBeforeChristmas, isNewYearsEve, days, hours, minutes, seconds,
+                })}
+              </span>
+              <span aria-hidden="true">
+                {
+                  isBeforeChristmas ? (
+                    <>
+                      <FlipNumber value={String(days).padStart(2, '0')} />
+                      &nbsp;days&nbsp;
+                    </>
+                  ) : ''
+                }
+                <FlipNumber value={String(hours).padStart(2, '0')} />
+                &nbsp;hours&nbsp;
+                <FlipNumber value={String(minutes).padStart(2, '0')} />
+                &nbsp;minutes&nbsp;
+                <FlipNumber value={String(seconds).padStart(2, '0')} />
+                &nbsp;seconds
+              </span>
             </>
-          ) : (<> </>)
+          ) : (<>&nbsp;</>)
         }
-      </Box>
-      <Emojis isNewYear={isNewYear} isNewYearsEve={isNewYearsEve} />
-    </Stack>
+      </div>
+      <Icons isNewYearPhase={isNewYearPhase} />
+    </div>
   );
 }

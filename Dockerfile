@@ -25,6 +25,7 @@ COPY --chown=node scripts/ scripts/
 COPY --chown=node next.config.js ./
 
 RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache \
+    --mount=type=cache,mode=0777,target=/app/.next/cache \
     YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn build
 
 # production stage

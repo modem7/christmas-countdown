@@ -1,354 +1,274 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --color-bg-top: #000000;
+  --color-bg-bottom: #0d0033;
+  --color-christmas: #ff2d55;
+  --color-christmas-glow: rgba(255, 45, 85, 0.85);
+  --color-new-year: #39ff88;
+  --color-new-year-glow: rgba(57, 255, 136, 0.85);
+}
+
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
-  background-image: linear-gradient(to bottom, black, #070026);
+  background-image: linear-gradient(to bottom, var(--color-bg-top), var(--color-bg-bottom));
+  overflow: hidden;
 }
 
 #__next {
   height: 100%;
 }
 
+.app-fonts {
+  height: 100%;
+}
+
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+}
+
+.ambient-glow-blob--one {
+  top: -15%;
+  left: -10%;
+  width: 60vmax;
+  height: 60vmax;
+  background: radial-gradient(circle, var(--color-christmas-glow) 0%, transparent 70%);
+  animation: drift-one 22s ease-in-out infinite alternate;
+}
+
+.ambient-glow-blob--two {
+  bottom: -20%;
+  right: -10%;
+  width: 55vmax;
+  height: 55vmax;
+  background: radial-gradient(circle, rgba(80, 60, 220, 0.5) 0%, transparent 70%);
+  animation: drift-two 26s ease-in-out infinite alternate;
+}
+
+.ambient-glow.new-year .ambient-glow-blob--one {
+  background: radial-gradient(circle, var(--color-new-year-glow) 0%, transparent 70%);
+}
+
+@keyframes drift-one {
+  from { transform: translate(0, 0); }
+  to { transform: translate(6vmax, 8vmax); }
+}
+
+@keyframes drift-two {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-5vmax, -6vmax); }
+}
+
+.sparkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffd76a;
+  box-shadow: 0 0 6px 2px rgba(255, 215, 106, 0.9);
+  opacity: 0;
+  animation-name: spark-burst;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spark-burst {
+  0% { transform: scale(0); opacity: 0; }
+  15% { transform: scale(1); opacity: 1; }
+  60% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(0.2); opacity: 0; }
+}
+
 .countdown-container {
+  position: relative;
+  z-index: 2;
   height: 100%;
   width: 90%;
   margin: auto;
-  color:  #cc2037 ;
-  -webkit-text-stroke-color: white;
-  -webkit-text-stroke-width: 0.25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  --text-color: var(--color-christmas);
+  --glow-color: var(--color-christmas-glow);
+  color: var(--text-color);
 }
 
-.new-year {
-  color: #4fd125;
+.countdown-container.new-year {
+  --text-color: var(--color-new-year);
+  --glow-color: var(--color-new-year-glow);
+}
+
+.label,
+.time-before-next-event,
+.text-during-event {
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.7),
+    0 0 10px var(--glow-color),
+    0 0 26px var(--glow-color);
 }
 
 .label {
-  font-family: "MountainsOfChristmas";
-  font-weight: bold;
+  font-family: var(--font-space-grotesk), Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.time-before-next-event, .text-during-event {
-  font-family: "AmaticSC";
-  font-weight: bold;
+.time-before-next-event {
+  font-family: var(--font-space-grotesk), Arial, sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   text-align: center;
 }
 
-footer {
+.text-during-event {
+  font-family: var(--font-great-vibes), cursive;
+  font-weight: 400;
+  text-align: center;
+}
+
+.icon-row {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sr-only {
   position: absolute;
-  bottom: 5px;
-  width: 100%;
-  text-align: center;
-  font-family: "MountainsOfChristmas";
-  font-size: 0.8rem;
-  
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-footer a {
-  color: #413a60;
-  text-decoration: none;
-  text-transform: uppercase;
+.event-icon {
+  color: var(--text-color);
+  filter: drop-shadow(0 0 6px var(--glow-color));
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0 0.15em;
 }
 
-.hide-footer {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #413a60;
-  text-decoration: underline;
-  background: none;
-  border: none;
+.flip-digit {
+  position: relative;
+  display: inline-block;
+  width: 1ch;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* text-shadow on .flip-digit-value would be clipped by the overflow:hidden
+     above; filter is not self-clipping, so the glow renders unclipped here. */
+  filter:
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 10px var(--glow-color))
+    drop-shadow(0 0 26px var(--glow-color));
 }
 
-.hide-footer::before {
-  content: "(";
-}
-
-.hide-footer::after {
-  content: ")";
-}
-
-.hide-footer:hover {
-  cursor: pointer;
-}
-
-footer a:hover {
-  font-weight: bold;
+.flip-digit-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
 }
 
 @media screen and (min-width: 300px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.25px;
-  }
-
-  .label, .emojis {
-    font-size: 1.25rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 1.25rem;
-  }
-
-  .text-during-event {
-    font-size: 3rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 0.7px;
-  }
-  
-  .number {
-    font-size: 2.2275rem;
-    -webkit-text-stroke-width: 0.4px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
+  .label, .icon-row { font-size: 1.25rem; }
+  .time-before-next-event { font-size: 1.25rem; }
+  .text-during-event { font-size: 3rem; }
+  .flip-digit { font-size: 2.2275rem; }
+  .icon-row, .label, .time-before-next-event, .text-during-event, .flip-digit {
+    -webkit-text-size-adjust: none;
   }
 }
 
 @media screen and (min-width: 360px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.35px;
-  }
-
-  .label, .emojis {
-    font-size: 1.4rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 1.3rem;
-  }
-
-  .text-during-event {
-    font-size: 4rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 0.8px;
-  }
-  
-  .number {
-    font-size: 3rem;
-    -webkit-text-stroke-width: 0.5px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 1.4rem; }
+  .time-before-next-event { font-size: 1.3rem; }
+  .text-during-event { font-size: 4rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 378px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.4px;
-  }
-  
-  .label, .emojis {
-    font-size: 1.5rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 1.5rem;
-  }
-
-  .text-during-event {
-    font-size: 4rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 0.9px;
-  }
-  
-  .number {
-    font-size: 3rem;
-    -webkit-text-stroke-width: 0.6px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 1.5rem; }
+  .time-before-next-event { font-size: 1.5rem; }
+  .text-during-event { font-size: 4rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 400px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.4px;
-  }
-
-  .label, .emojis {
-    font-size: 1.5rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 1.75rem;
-  }
-
-  .text-during-event {
-    font-size: 4.5rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 1px;
-  }
-  
-  .number {
-    font-size: 3rem;
-    -webkit-text-stroke-width: 0.7px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 1.5rem; }
+  .time-before-next-event { font-size: 1.75rem; }
+  .text-during-event { font-size: 4.5rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 500px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.4px;
-  }
-
-  .label, .emojis {
-    font-size: 1.6rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 2rem;
-  }
-
-  .text-during-event {
-    font-size: 5.5rem;
-  }
-  
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 1px;
-  }
-  
-  .number {
-    font-size: 3.25rem;
-    -webkit-text-stroke-width: 0.7px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 1.6rem; }
+  .time-before-next-event { font-size: 2rem; }
+  .text-during-event { font-size: 5.5rem; }
+  .flip-digit { font-size: 3.25rem; }
 }
 
 @media screen and (min-width: 600px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.5px;
-  }
-  
-  .label, .emojis {
-    font-size: 2rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 2.5rem;
-  }
-
-  .text-during-event {
-    font-size: 6.5rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 1.25px;
-  }
-  
-  .number {
-    font-size: 3.5rem;
-    -webkit-text-stroke-width: 0.8px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }
+  .label, .icon-row { font-size: 2rem; }
+  .time-before-next-event { font-size: 2.5rem; }
+  .text-during-event { font-size: 6.5rem; }
+  .flip-digit { font-size: 3.5rem; }
 }
 
 @media screen and (min-width: 700px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.5px;
-  }
-
-  .label, .emojis {
-    font-size: 2rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 2.5rem;
-  }
-
-  .text-during-event {
-    font-size: 7.8rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 1.25px;
-  }
-  
-  .number {
-    font-size: 5rem;
-    -webkit-text-stroke-width: 1px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 2rem; }
+  .time-before-next-event { font-size: 2.5rem; }
+  .text-during-event { font-size: 7.8rem; }
+  .flip-digit { font-size: 5rem; }
 }
 
 @media screen and (min-width: 800px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.5px;
-  }
-
-  .label, .emojis {
-    font-size: 2rem;
-  }
-  
-  .time-before-next-event {
-    font-size: 3rem;
-  }
-
-  .text-during-event {
-    font-size: 9rem;
-  }
-
-  .time-before-next-event, .text-during-event {
-    -webkit-text-stroke-width: 1.5px;
-  }
-  
-  .number {
-    font-size: 6rem;
-    -webkit-text-stroke-width: 1.2px;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 2rem; }
+  .time-before-next-event { font-size: 3rem; }
+  .text-during-event { font-size: 9rem; }
+  .flip-digit { font-size: 6rem; }
 }
 
 @media screen and (min-width: 1200px) {
-  .countdown-container {
-    -webkit-text-stroke-width: 0.5px;
-  }
-
-  .label, .emojis {
-    font-size: 2.5rem;
-  }
-  
-  .time-before-next-event, .text-during-event, .number {
-    -webkit-text-stroke-width: 2px;
-  }
-
-  .time-before-next-event {
-    font-size: 3rem;
-  }
-
-  .text-during-event {
-    font-size: 9rem;
-  }
-  
-  .number {
-    font-size: 9rem;
-  }
-
-  .emojis, .label, .time-before-next-event, .text-during-event, .number {
-    -webkit-text-size-adjust:none;
-  }  
+  .label, .icon-row { font-size: 2.5rem; }
+  .time-before-next-event { font-size: 3rem; }
+  .text-during-event { font-size: 9rem; }
+  .flip-digit { font-size: 9rem; }
 }

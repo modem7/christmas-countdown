@@ -1,37 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import dynamic from 'next/dynamic';
 
 import Countdown from '../src/Countdown';
+import AmbientGlow from '../src/AmbientGlow';
+import Sparkles from '../src/Sparkles';
+import useCountdownPhase from '../src/useCountdownPhase';
 
 const Snowfall = dynamic({ loader: () => import('react-snowfall') }, { loading: () => <div></div>, ssr: false }); // eslint-disable-line
 
 export default function Index() {
-  const [year, setYear] = useState((new Date().getFullYear()));
-  const [showFooter, setShowFotter] = useState(true);
-
-  useEffect(() => {
-    setYear((new Date().getFullYear()));
-  });
+  const phase = useCountdownPhase();
+  const isNewYearPhase = phase.isNewYearsEve || phase.isNewYear;
 
   return (
     <>
+      <AmbientGlow isNewYearPhase={isNewYearPhase} />
       <Snowfall />
-      <Countdown />
-      {
-        showFooter ? (
-          <footer>
-            <a href="https://plbrault.com">
-              &copy;
-              &nbsp;
-              {year}
-              &nbsp;
-              P-L.Brault
-            </a>
-            <button type="button" className="hide-footer" onClick={() => setShowFotter(false)}>hide</button>
-          </footer>
-        ) : ''
-      }
+      {isNewYearPhase ? <Sparkles /> : null}
+      <Countdown {...phase} />
     </>
   );
 }

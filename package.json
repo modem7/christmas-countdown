@@ -3,17 +3,11 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@mui/material": "latest",
     "@next/eslint-plugin-next": "latest",
     "browserslist": "latest",
-    "clsx": "latest",
+    "framer-motion": "^12.42.2",
     "luxon": "^3.0.0",
     "next": "latest",
-    "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-snowfall": "^2.1.0",
@@ -23,6 +17,8 @@
     "dev": "next",
     "build": "next build",
     "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "serve": "serve out",
     "addDomain": "echo \"yetanotherchristmascountdown.com\" > out/CNAME",
     "deploy": "yarn build && yarn addDomain && touch out/.nojekyll && gh-pages -t -d out"
@@ -33,6 +29,10 @@
     "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^6.0.3",
     "eslint": "^10.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
@@ -40,7 +40,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^7.0.0",
     "globals": "^17.7.0",
-    "serve": "^14.0.0"
+    "jsdom": "^29.1.1",
+    "serve": "^14.0.0",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
   },
   "packageManager": "yarn@4.17.1"
 }
