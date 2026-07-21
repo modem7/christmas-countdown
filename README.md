@@ -1,8 +1,8 @@
 # Yet Another Christmas Countdown!
 
 A self-hosted, self-contained countdown to Christmas — and then to New Year's
-— with a neon-glow design, animated flip-style digits, and a drifting
-ambient background. No ads, no analytics, no social icons, just the
+— with a festive red-and-green design, animated flip-style digits, and snow
+that reacts to your cursor. No ads, no analytics, no social icons, just the
 countdown.
 
 [![status-badge](https://woodpecker.modem7.com/api/badges/7/status.svg?events=push%2Cmanual)](https://woodpecker.modem7.com/repos/7)
@@ -40,8 +40,9 @@ Open `http://localhost:8080` and enjoy.
 
 ## What's actually in the image
 
-- Static export from Next.js — fonts (Space Grotesk / Great Vibes) and countdown logic are baked in at build time via `next build`, no server-side runtime
-- Served by `nginxinc/nginx-unprivileged`, runs as a non-root user
+- Static export from Next.js — fonts (Space Grotesk / Fraunces) and countdown logic are baked in at build time via `next build`, no server-side runtime
+- Snow is a custom canvas layer (no third-party particle library) that swirls away from the cursor
+- Served by `nginxinc/nginx-unprivileged`, runs as a non-root user, with security headers (CSP, `X-Frame-Options`, etc.) set in `scripts/nginx/70-nginx.sh`
 - Multi-arch: `amd64`, `arm64/v8`
 
 ## Testing / CI
@@ -49,7 +50,12 @@ Open `http://localhost:8080` and enjoy.
 `yarn lint` and `yarn test` (Vitest — countdown date logic, phase derivation,
 and component rendering) run in
 [GitHub Actions](.github/workflows/CI.yml) on every push and PR, alongside a
-Dockerfile build check.
+Dockerfile build check (native `amd64`/`arm64` runners, no QEMU).
+
+A separate [image test](.github/workflows/test.yml) builds the real image,
+boots a container, and checks it end-to-end: security headers, gzip,
+`/healthz`, non-root/no-sudo/no-world-writable-files, and — via a Playwright
+script — that each countdown phase actually renders correctly.
 
 `.woodpecker.yml` does the actual multi-arch build and Docker Hub push,
 triggered automatically on push to `master` (or manually, for on-demand
