@@ -2,7 +2,7 @@ import React from 'react';
 
 function Icons({ isNewYearPhase }) {
   return (
-    <span className="emojis">
+    <span className="icon-row">
       {isNewYearPhase ? '🍾🍾🍾' : '🎄🎄🎄'}
     </span>
   );
