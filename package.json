@@ -47,6 +47,8 @@
   "packageManager": "yarn@4.17.1",
   "resolutions": {
     "minimatch@npm:10.2.5/brace-expansion": "^5.0.7",
-    "next@npm:16.2.9/postcss": "^8.5.10"
+    "next@npm:16.2.9/postcss": "^8.5.10",
+    "next@npm:16.2.9/sharp": "^0.35.0",
+    "ajv@npm:8.18.0/fast-uri": "^3.1.4"
   }
 }
