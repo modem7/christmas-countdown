@@ -1,9 +1,15 @@
 import React from 'react';
 
+import TreeIcon from './icons/TreeIcon';
+import ChampagneIcon from './icons/ChampagneIcon';
+
 function Icons({ isNewYearPhase }) {
+  const Icon = isNewYearPhase ? ChampagneIcon : TreeIcon;
   return (
     <span className="icon-row">
-      {isNewYearPhase ? '🍾🍾🍾' : '🎄🎄🎄'}
+      <Icon className="event-icon" />
+      <Icon className="event-icon" />
+      <Icon className="event-icon" />
     </span>
   );
 }

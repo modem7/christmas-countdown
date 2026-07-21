@@ -163,6 +163,14 @@ body {
   align-items: center;
 }
 
+.event-icon {
+  color: var(--text-color);
+  filter: drop-shadow(0 0 6px var(--glow-color));
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0 0.15em;
+}
+
 @media screen and (min-width: 300px) {
   .label, .icon-row { font-size: 1.25rem; }
   .time-before-next-event { font-size: 1.25rem; }
