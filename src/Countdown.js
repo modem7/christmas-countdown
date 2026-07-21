@@ -22,6 +22,18 @@ function FlipNumber({ value }) {
   ));
 }
 
+function accessibleCountdownText({
+  isBeforeChristmas, isNewYearsEve, days, hours, minutes, seconds,
+}) {
+  if (isBeforeChristmas) {
+    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+  }
+  if (isNewYearsEve) {
+    return `${hours} hours ${minutes} minutes ${seconds} seconds`;
+  }
+  return '';
+}
+
 export default function Countdown({
   isBeforeChristmas,
   isChristmas,
@@ -51,20 +63,27 @@ export default function Countdown({
         {
           (isBeforeChristmas || isNewYearsEve) ? (
             <>
-              {
-                isBeforeChristmas ? (
-                  <>
-                    <FlipNumber value={String(days).padStart(2, '0')} />
-                    &nbsp;days&nbsp;
-                  </>
-                ) : ''
-              }
-              <FlipNumber value={String(hours).padStart(2, '0')} />
-              &nbsp;hours&nbsp;
-              <FlipNumber value={String(minutes).padStart(2, '0')} />
-              &nbsp;minutes&nbsp;
-              <FlipNumber value={String(seconds).padStart(2, '0')} />
-              &nbsp;seconds
+              <span className="sr-only">
+                {accessibleCountdownText({
+                  isBeforeChristmas, isNewYearsEve, days, hours, minutes, seconds,
+                })}
+              </span>
+              <span aria-hidden="true">
+                {
+                  isBeforeChristmas ? (
+                    <>
+                      <FlipNumber value={String(days).padStart(2, '0')} />
+                      &nbsp;days&nbsp;
+                    </>
+                  ) : ''
+                }
+                <FlipNumber value={String(hours).padStart(2, '0')} />
+                &nbsp;hours&nbsp;
+                <FlipNumber value={String(minutes).padStart(2, '0')} />
+                &nbsp;minutes&nbsp;
+                <FlipNumber value={String(seconds).padStart(2, '0')} />
+                &nbsp;seconds
+              </span>
             </>
           ) : (<>&nbsp;</>)
         }
