@@ -5,19 +5,27 @@ _extends: .github
 repository:
   #name: NewRepo
   description: Yet another Christmas Countdown website, built in React using Next.js.
-  topics: christmas, xmas, node, docker, nginx
+  homepage: https://hub.docker.com/r/modem7/christmas-countdown
+  topics: christmas, xmas, countdown, nextjs, react, docker, nginx, self-hosted, homelab
 
   private: false
   has_issues: true
   has_wiki: false
   has_downloads: true
   has_projects: false
+  has_discussions: false
 
   default_branch: master
 
   allow_squash_merge: true
   allow_rebase_merge: true
-  allow_merge_commit: false
+  allow_merge_commit: true
+
+  # Auto-delete head branches after merge
+  delete_branch_on_merge: true
+
+  # Always suggest updating PR branches that are behind base
+  allow_update_branch: true
 
   enable_automated_security_fixes: true
   enable_vulnerability_alerts: true

@@ -17,12 +17,7 @@ events {
 }
 
 http {
-    proxy_temp_path /tmp/proxy_temp;
-    proxy_cache_path /tmp/mycache keys_zone=mycache:50m;
     client_body_temp_path /tmp/client_temp;
-    fastcgi_temp_path /tmp/fastcgi_temp;
-    uwsgi_temp_path /tmp/uwsgi_temp;
-    scgi_temp_path /tmp/scgi_temp;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -37,10 +32,15 @@ http {
     sendfile        on;
     tcp_nopush     on;
     keepalive_timeout  65;
-    gzip  on;
+
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_min_length 256;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml font/woff2;
 
     server {
-        # add proxy caches
         listen       ${PORT};
 
         root /usr/share/nginx/html;
@@ -51,12 +51,31 @@ http {
 
         error_page 404 /index.html;
 
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "no-referrer" always;
+        add_header Content-Security-Policy "default-src 'self'; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'" always;
+
         location /healthz {
             return 200;
+        }
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|webp|svg|woff|woff2|ttf|webmanifest)$ {
+            expires 5d;
         }
     }
 }
 EOF
+
+# Remove the base image's stock welcome-page config - it also listens on
+# ${PORT} and, since it's included before our own server block is defined
+# above, nginx would otherwise treat it as the default handler for this
+# port instead of ours.
+rm -f /etc/nginx/conf.d/default.conf
 
 # Apply port variable
 sed -i s/'${PORT}'/${PORT}/g /etc/nginx/nginx.conf

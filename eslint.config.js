@@ -65,4 +65,15 @@ module.exports = [
       'import/no-unresolved': 'off',
     },
   },
+  {
+    // CI-only scripts run against a scratch `npm install` done by the
+    // workflow itself (see .github/workflows/test.yml) - playwright is
+    // deliberately not a yarn dependency of the app, and console output
+    // is the point of a CLI script.
+    files: ['.github/scripts/**'],
+    rules: {
+      'import/no-unresolved': 'off',
+      'no-console': 'off',
+    },
+  },
 ];
