@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Preserve the countdown's exact date/event behavior as documented in `README.md`'s "Detailed Behaviour" section (Christmas countdown → "Merry Christmas!" on Dec 25 → "Happy Holidays!" Dec 26–30 → New Year countdown → "Happy New Year!" on Jan 1). `src/getTimeToNextEvent.js` is not modified.
-- No test framework exists and none is being introduced. Verification per task is `yarn lint`, `yarn build` (static export), and — where visual behavior changes — a manual/Playwright check per CLAUDE.md's requirement to verify UI changes in a browser before calling them done.
+- No test framework exists and none is being introduced. Verification per task is `yarn build` (static export), and — where visual behavior changes — a manual/Playwright check per CLAUDE.md's requirement to verify UI changes in a browser before calling them done. `yarn lint`/`eslint` is **not usable**: there is no `lint` script in `package.json`, and running `eslint` directly fails outright because it was bumped to v10 (which dropped all support for the legacy `.eslintrc.js` format) while the config was never migrated to flat config. This predates this plan and is being tracked separately — do not attempt to fix it as part of any task here, and do not treat a failing/missing lint command as a task blocker.
 - The static-export deployment model (`next.config.js` `output: 'export'`) is unchanged; no new pages or routes.
 - `LICENSE.txt` must retain the original Pier-Luc Brault 2021 copyright line — this is a dual notice, not a replacement.
 - Package manager is Yarn Berry 4.17.1 (`packageManager: yarn@4.17.1` in `package.json`) — use `yarn`, never `npm`.
@@ -114,7 +114,7 @@ footer a:hover {
 Run: `grep -rn "microanalytics\|plbrault.com\|hide-footer" pages/ css/`
 Expected: no matches (empty output).
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: exits 0, no errors.
 
 - [ ] **Step 5: Commit**
@@ -438,9 +438,6 @@ yarn remove @mui/material @emotion/cache @emotion/react @emotion/server @emotion
 Run: `grep -rn "@mui\|@emotion\|prop-types\|clsx" pages/ src/ package.json`
 Expected: no matches.
 
-Run: `yarn lint`
-Expected: exits 0.
-
 Run: `yarn build`
 Expected: exits 0, produces `out/` directory.
 
@@ -582,7 +579,7 @@ Also add, right after the `#__next { height: 100%; }` rule:
 Run: `test ! -f css/fonts.css && test ! -d font-licenses && echo OK`
 Expected: `OK`
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 Run: `grep -c "font-family: var(--font-space-grotesk)" out/index.html`
@@ -905,7 +902,7 @@ body {
 
 - [ ] **Step 5: Verify**
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 Run: `yarn dev` (in background), then use the webapp-testing skill to open `http://localhost:3000` in a browser and take a screenshot.
@@ -1042,7 +1039,7 @@ Add this rule right after the existing `.icon-row { ... }` rule:
 
 - [ ] **Step 5: Verify**
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 Run: `yarn dev` (in background), use the webapp-testing skill to screenshot `http://localhost:3000`.
@@ -1169,7 +1166,7 @@ Add this new rule right after the `.event-icon { ... }` rule:
 
 - [ ] **Step 5: Verify**
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 Run: `yarn dev` (in background), use the webapp-testing skill to open `http://localhost:3000`, wait 2 seconds, and take two screenshots one second apart.
@@ -1265,7 +1262,7 @@ export default function Index() {
 
 - [ ] **Step 3: Verify**
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 Run: `yarn dev` (in background). Use the webapp-testing skill's Playwright access to override the clock before navigating, so the app renders as if it were New Year's Eve one minute to midnight:
@@ -1382,7 +1379,7 @@ git commit -m "Export full-layer build cache to a dedicated registry tag in CI"
 
 - [ ] **Step 1: Full static build**
 
-Run: `cd /home/modem7/project/christmas-countdown && yarn lint && yarn build`
+Run: `cd /home/modem7/project/christmas-countdown && yarn build`
 Expected: both exit 0.
 
 - [ ] **Step 2: Default (Christmas-countdown) view**
