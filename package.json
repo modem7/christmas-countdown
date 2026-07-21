@@ -22,6 +22,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "lint": "eslint .",
     "serve": "serve out",
     "addDomain": "echo \"yetanotherchristmascountdown.com\" > out/CNAME",
     "deploy": "yarn build && yarn addDomain && touch out/.nojekyll && gh-pages -t -d out"
@@ -29,12 +30,16 @@
   "devDependencies": {
     "@babel/core": "^8.0.0",
     "@babel/eslint-parser": "^8.0.0",
+    "@eslint/compat": "^2.1.0",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^10.0.1",
     "eslint": "^10.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^7.0.0",
+    "globals": "^17.7.0",
     "serve": "^14.0.0"
   },
   "packageManager": "yarn@4.17.1"
