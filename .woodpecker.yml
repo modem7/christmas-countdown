@@ -30,6 +30,7 @@ steps:
         BUILDKIT_INLINE_CACHE: "1"
       cache_from:
         - type=registry\,ref=modem7/christmas-countdown:latest
+        - type=registry\,ref=modem7/christmas-countdown:buildcache
       cache_to:
         - type=registry\,ref=modem7/christmas-countdown:buildcache\,mode=max
       platforms: linux/amd64,linux/arm64/v8
