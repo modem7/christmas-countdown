@@ -17,10 +17,17 @@ steps:
       - corepack enable
       - yarn install --immutable
 
+  - name: lint
+    image: node:22.12-alpine3.19
+    depends_on: [check-lockfile]
+    commands:
+      - corepack enable
+      - yarn lint
+
   - name: build-and-push
     image: woodpeckerci/plugin-docker-buildx
     privileged: true
-    depends_on: [lint-dockerfile, check-lockfile]
+    depends_on: [lint-dockerfile, check-lockfile, lint]
     settings:
       repo: modem7/christmas-countdown
       dockerfile: Dockerfile
