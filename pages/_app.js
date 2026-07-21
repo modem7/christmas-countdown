@@ -1,17 +1,17 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { Space_Grotesk, Great_Vibes } from 'next/font/google';
+import { Space_Grotesk as SpaceGrotesk, Great_Vibes as GreatVibes } from 'next/font/google';
 
 import '../css/main.css';
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = SpaceGrotesk({
   subsets: ['latin'],
   weight: ['500', '700'],
   variable: '--font-space-grotesk',
   display: 'swap',
 });
 
-const greatVibes = Great_Vibes({
+const greatVibes = GreatVibes({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-great-vibes',

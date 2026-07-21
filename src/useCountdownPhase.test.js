@@ -34,7 +34,11 @@ describe('useCountdownPhase', () => {
     const { result } = renderHook(() => useCountdownPhase());
 
     expect(allPhaseFlags(result.current)).toEqual({
-      isBeforeChristmas: true, isChristmas: false, isHolidays: false, isNewYearsEve: false, isNewYear: false,
+      isBeforeChristmas: true,
+      isChristmas: false,
+      isHolidays: false,
+      isNewYearsEve: false,
+      isNewYear: false,
     });
     expect(result.current.days).toBeGreaterThan(0);
   });
@@ -45,7 +49,11 @@ describe('useCountdownPhase', () => {
     const { result } = renderHook(() => useCountdownPhase());
 
     expect(allPhaseFlags(result.current)).toEqual({
-      isBeforeChristmas: false, isChristmas: true, isHolidays: false, isNewYearsEve: false, isNewYear: false,
+      isBeforeChristmas: false,
+      isChristmas: true,
+      isHolidays: false,
+      isNewYearsEve: false,
+      isNewYear: false,
     });
   });
 
@@ -55,7 +63,11 @@ describe('useCountdownPhase', () => {
     const { result } = renderHook(() => useCountdownPhase());
 
     expect(allPhaseFlags(result.current)).toEqual({
-      isBeforeChristmas: false, isChristmas: false, isHolidays: true, isNewYearsEve: false, isNewYear: false,
+      isBeforeChristmas: false,
+      isChristmas: false,
+      isHolidays: true,
+      isNewYearsEve: false,
+      isNewYear: false,
     });
     expect(result.current.days).toBeGreaterThan(0);
   });
@@ -66,7 +78,11 @@ describe('useCountdownPhase', () => {
     const { result } = renderHook(() => useCountdownPhase());
 
     expect(allPhaseFlags(result.current)).toEqual({
-      isBeforeChristmas: false, isChristmas: false, isHolidays: false, isNewYearsEve: true, isNewYear: false,
+      isBeforeChristmas: false,
+      isChristmas: false,
+      isHolidays: false,
+      isNewYearsEve: true,
+      isNewYear: false,
     });
     expect(result.current.days).toBe(0);
   });
@@ -77,7 +93,11 @@ describe('useCountdownPhase', () => {
     const { result } = renderHook(() => useCountdownPhase());
 
     expect(allPhaseFlags(result.current)).toEqual({
-      isBeforeChristmas: false, isChristmas: false, isHolidays: false, isNewYearsEve: false, isNewYear: true,
+      isBeforeChristmas: false,
+      isChristmas: false,
+      isHolidays: false,
+      isNewYearsEve: false,
+      isNewYear: true,
     });
   });
 
