@@ -2,6 +2,7 @@ import React from 'react';
 
 import TreeIcon from './icons/TreeIcon';
 import ChampagneIcon from './icons/ChampagneIcon';
+import FlipDigit from './FlipDigit';
 
 function Icons({ isNewYearPhase }) {
   const Icon = isNewYearPhase ? ChampagneIcon : TreeIcon;
@@ -12,6 +13,13 @@ function Icons({ isNewYearPhase }) {
       <Icon className="event-icon" />
     </span>
   );
+}
+
+function FlipNumber({ value }) {
+  return value.split('').map((digit, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <FlipDigit key={index} value={digit} />
+  ));
 }
 
 export default function Countdown({
@@ -46,16 +54,16 @@ export default function Countdown({
               {
                 isBeforeChristmas ? (
                   <>
-                    <span className="number">{String(days).padStart(2, '0')}</span>
+                    <FlipNumber value={String(days).padStart(2, '0')} />
                     &nbsp;days&nbsp;
                   </>
                 ) : ''
               }
-              <span className="number">{String(hours).padStart(2, '0')}</span>
+              <FlipNumber value={String(hours).padStart(2, '0')} />
               &nbsp;hours&nbsp;
-              <span className="number">{String(minutes).padStart(2, '0')}</span>
+              <FlipNumber value={String(minutes).padStart(2, '0')} />
               &nbsp;minutes&nbsp;
-              <span className="number">{String(seconds).padStart(2, '0')}</span>
+              <FlipNumber value={String(seconds).padStart(2, '0')} />
               &nbsp;seconds
             </>
           ) : (<>&nbsp;</>)

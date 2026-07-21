@@ -5,6 +5,7 @@
   "dependencies": {
     "@next/eslint-plugin-next": "latest",
     "browserslist": "latest",
+    "framer-motion": "^12.42.2",
     "luxon": "^3.0.0",
     "next": "latest",
     "react": "latest",

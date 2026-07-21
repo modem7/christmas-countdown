@@ -171,12 +171,29 @@ body {
   margin: 0 0.15em;
 }
 
+.flip-digit {
+  position: relative;
+  display: inline-block;
+  width: 1ch;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.flip-digit-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (min-width: 300px) {
   .label, .icon-row { font-size: 1.25rem; }
   .time-before-next-event { font-size: 1.25rem; }
   .text-during-event { font-size: 3rem; }
-  .number { font-size: 2.2275rem; }
-  .icon-row, .label, .time-before-next-event, .text-during-event, .number {
+  .flip-digit { font-size: 2.2275rem; }
+  .icon-row, .label, .time-before-next-event, .text-during-event, .flip-digit {
     -webkit-text-size-adjust: none;
   }
 }
@@ -185,54 +202,54 @@ body {
   .label, .icon-row { font-size: 1.4rem; }
   .time-before-next-event { font-size: 1.3rem; }
   .text-during-event { font-size: 4rem; }
-  .number { font-size: 3rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 378px) {
   .label, .icon-row { font-size: 1.5rem; }
   .time-before-next-event { font-size: 1.5rem; }
   .text-during-event { font-size: 4rem; }
-  .number { font-size: 3rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 400px) {
   .label, .icon-row { font-size: 1.5rem; }
   .time-before-next-event { font-size: 1.75rem; }
   .text-during-event { font-size: 4.5rem; }
-  .number { font-size: 3rem; }
+  .flip-digit { font-size: 3rem; }
 }
 
 @media screen and (min-width: 500px) {
   .label, .icon-row { font-size: 1.6rem; }
   .time-before-next-event { font-size: 2rem; }
   .text-during-event { font-size: 5.5rem; }
-  .number { font-size: 3.25rem; }
+  .flip-digit { font-size: 3.25rem; }
 }
 
 @media screen and (min-width: 600px) {
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 2.5rem; }
   .text-during-event { font-size: 6.5rem; }
-  .number { font-size: 3.5rem; }
+  .flip-digit { font-size: 3.5rem; }
 }
 
 @media screen and (min-width: 700px) {
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 2.5rem; }
   .text-during-event { font-size: 7.8rem; }
-  .number { font-size: 5rem; }
+  .flip-digit { font-size: 5rem; }
 }
 
 @media screen and (min-width: 800px) {
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 3rem; }
   .text-during-event { font-size: 9rem; }
-  .number { font-size: 6rem; }
+  .flip-digit { font-size: 6rem; }
 }
 
 @media screen and (min-width: 1200px) {
   .label, .icon-row { font-size: 2.5rem; }
   .time-before-next-event { font-size: 3rem; }
   .text-during-event { font-size: 9rem; }
-  .number { font-size: 9rem; }
+  .flip-digit { font-size: 9rem; }
 }
