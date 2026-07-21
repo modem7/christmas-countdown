@@ -21,6 +21,10 @@ body {
   height: 100%;
 }
 
+.app-fonts {
+  height: 100%;
+}
+
 .countdown-container {
   height: 100%;
   width: 90%;
@@ -35,13 +39,20 @@ body {
 }
 
 .label {
-  font-family: "MountainsOfChristmas";
-  font-weight: bold;
+  font-family: var(--font-space-grotesk), Arial, sans-serif;
+  font-weight: 700;
 }
 
-.time-before-next-event, .text-during-event {
-  font-family: "AmaticSC";
-  font-weight: bold;
+.time-before-next-event {
+  font-family: var(--font-space-grotesk), Arial, sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.text-during-event {
+  font-family: var(--font-great-vibes), cursive;
+  font-weight: 400;
   text-align: center;
 }
 

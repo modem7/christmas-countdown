@@ -1,11 +1,26 @@
 import * as React from 'react';
 import Head from 'next/head';
+import { Space_Grotesk, Great_Vibes } from 'next/font/google';
 
 import '../css/main.css';
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-great-vibes',
+  display: 'swap',
+});
+
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className={`app-fonts ${spaceGrotesk.variable} ${greatVibes.variable}`}>
       <Head>
         <title>Yet Another Christmas Countdown!</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -29,6 +44,6 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
