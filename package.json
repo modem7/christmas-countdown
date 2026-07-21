@@ -10,7 +10,6 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-snowfall": "^2.1.0",
     "update-browserslist-db": "latest"
   },
   "scripts": {

@@ -4343,7 +4343,6 @@ __metadata:
     next: "npm:latest"
     react: "npm:latest"
     react-dom: "npm:latest"
-    react-snowfall: "npm:^2.1.0"
     serve: "npm:^14.0.0"
     update-browserslist-db: "npm:latest"
     vite: "npm:^8.1.5"
@@ -4761,13 +4760,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "react-fast-compare@npm:3.2.2"
-  checksum: 10c0/0bbd2f3eb41ab2ff7380daaa55105db698d965c396df73e6874831dbafec8c4b5b08ba36ff09df01526caa3c61595247e3269558c284e37646241cba2b90a367
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -4779,18 +4771,6 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 10c0/2bdb6b93fbb1820b024b496042cce405c57e2f85e777c9aabd55f9b26d145408f9f74f5934676ffdc46f3dcff656d78413a6e43968e7b3f92eea35b3052e9053
-  languageName: node
-  linkType: hard
-
-"react-snowfall@npm:^2.1.0":
-  version: 2.4.0
-  resolution: "react-snowfall@npm:2.4.0"
-  dependencies:
-    react-fast-compare: "npm:^3.2.2"
-  peerDependencies:
-    react: ^16.8 || 17.x || 18.x || 19.x
-    react-dom: ^16.8 || 17.x || 18.x || 19.x
-  checksum: 10c0/11fa0b250ce8cab4026b933123f1212a0874124d810bdfd881a30f1c28b1b4daaf6f0c1d05e26e26ce9d19fedbc0ef7869a5313177523b210fb2efe39c4f88c6
   languageName: node
   linkType: hard
 

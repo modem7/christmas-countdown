@@ -3,7 +3,7 @@ import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
 
-const THEME_COLOR = '#0d0033';
+const THEME_COLOR = '#070026';
 
 export default class MyDocument extends Document {
   render() {
