@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { Space_Grotesk as SpaceGrotesk, Great_Vibes as GreatVibes } from 'next/font/google';
+import { Space_Grotesk as SpaceGrotesk, Fraunces } from 'next/font/google';
 
 import '../css/main.css';
 
@@ -11,21 +11,22 @@ const spaceGrotesk = SpaceGrotesk({
   display: 'swap',
 });
 
-const greatVibes = GreatVibes({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: '400',
-  variable: '--font-great-vibes',
+  weight: ['600'],
+  style: ['italic'],
+  variable: '--font-fraunces',
   display: 'swap',
 });
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <div className={`app-fonts ${spaceGrotesk.variable} ${greatVibes.variable}`}>
+    <div className={`app-fonts ${spaceGrotesk.variable} ${fraunces.variable}`}>
       <Head>
         <title>Yet Another Christmas Countdown!</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-        <meta name="apple-mobile-web-app-status-bar-style" content="#0d0033" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#070026" />
 
         <meta name="og:title" content="Yet Another Christmas Countdown!" />
         <meta name="tiwtter:title" content="Yet Another Christmas Countdown!" />

@@ -6,11 +6,12 @@ import FlipDigit from './FlipDigit';
 
 function Icons({ isNewYearPhase }) {
   const Icon = isNewYearPhase ? ChampagneIcon : TreeIcon;
+  const modifierClass = isNewYearPhase ? 'event-icon--champagne' : 'event-icon--tree';
   return (
     <span className="icon-row">
-      <Icon className="event-icon" />
-      <Icon className="event-icon" />
-      <Icon className="event-icon" />
+      <Icon className={`event-icon ${modifierClass}`} />
+      <Icon className={`event-icon ${modifierClass}`} />
+      <Icon className={`event-icon ${modifierClass}`} />
     </span>
   );
 }
@@ -68,21 +69,27 @@ export default function Countdown({
                   isBeforeChristmas, isNewYearsEve, days, hours, minutes, seconds,
                 })}
               </span>
-              <span aria-hidden="true">
+              <span className="digit-row" aria-hidden="true">
                 {
                   isBeforeChristmas ? (
-                    <>
+                    <span className="digit-unit">
                       <FlipNumber value={String(days).padStart(2, '0')} />
-                      &nbsp;days&nbsp;
-                    </>
-                  ) : ''
+                      &nbsp;days
+                    </span>
+                  ) : null
                 }
-                <FlipNumber value={String(hours).padStart(2, '0')} />
-                &nbsp;hours&nbsp;
-                <FlipNumber value={String(minutes).padStart(2, '0')} />
-                &nbsp;minutes&nbsp;
-                <FlipNumber value={String(seconds).padStart(2, '0')} />
-                &nbsp;seconds
+                <span className="digit-unit">
+                  <FlipNumber value={String(hours).padStart(2, '0')} />
+                  &nbsp;hours
+                </span>
+                <span className="digit-unit">
+                  <FlipNumber value={String(minutes).padStart(2, '0')} />
+                  &nbsp;minutes
+                </span>
+                <span className="digit-unit">
+                  <FlipNumber value={String(seconds).padStart(2, '0')} />
+                  &nbsp;seconds
+                </span>
               </span>
             </>
           ) : (<>&nbsp;</>)

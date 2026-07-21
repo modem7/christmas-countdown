@@ -6,8 +6,8 @@ import { cleanup, render, screen } from '@testing-library/react';
 
 import Countdown from './Countdown';
 
-const TREE_PATH = 'M12 2 L6 10 H9 L4 17 H20 L15 10 H18 Z';
-const CHAMPAGNE_PATH = 'M9 2 L10 12 A2 2 0 0 0 14 12 L15 2 Z';
+const TREE_PATH = 'M12 2 L9 6.5 H15 Z';
+const CHAMPAGNE_PATH = 'M9.5 2 L10.5 11 A1.5 1.5 0 0 0 13.5 11 L14.5 2 Z';
 
 const basePhase = {
   isBeforeChristmas: false,

@@ -10,11 +10,11 @@ body {
 
 :root {
   --color-bg-top: #000000;
-  --color-bg-bottom: #0d0033;
-  --color-christmas: #ff2d55;
-  --color-christmas-glow: rgba(255, 45, 85, 0.85);
-  --color-new-year: #39ff88;
-  --color-new-year-glow: rgba(57, 255, 136, 0.85);
+  --color-bg-bottom: #070026;
+  --color-christmas: #cc2037;
+  --color-new-year: #4fd125;
+  --color-tree: #2f9e44;
+  --color-champagne: #e8b84b;
 }
 
 html {
@@ -24,7 +24,6 @@ html {
 body {
   height: 100%;
   background-image: linear-gradient(to bottom, var(--color-bg-top), var(--color-bg-bottom));
-  overflow: hidden;
 }
 
 #__next {
@@ -35,51 +34,11 @@ body {
   height: 100%;
 }
 
-.ambient-glow {
+.reactive-snow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
-}
-
-.ambient-glow-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
-}
-
-.ambient-glow-blob--one {
-  top: -15%;
-  left: -10%;
-  width: 60vmax;
-  height: 60vmax;
-  background: radial-gradient(circle, var(--color-christmas-glow) 0%, transparent 70%);
-  animation: drift-one 22s ease-in-out infinite alternate;
-}
-
-.ambient-glow-blob--two {
-  bottom: -20%;
-  right: -10%;
-  width: 55vmax;
-  height: 55vmax;
-  background: radial-gradient(circle, rgba(80, 60, 220, 0.5) 0%, transparent 70%);
-  animation: drift-two 26s ease-in-out infinite alternate;
-}
-
-.ambient-glow.new-year .ambient-glow-blob--one {
-  background: radial-gradient(circle, var(--color-new-year-glow) 0%, transparent 70%);
-}
-
-@keyframes drift-one {
-  from { transform: translate(0, 0); }
-  to { transform: translate(6vmax, 8vmax); }
-}
-
-@keyframes drift-two {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-5vmax, -6vmax); }
 }
 
 .sparkles {
@@ -120,41 +79,42 @@ body {
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-  --text-color: var(--color-christmas);
-  --glow-color: var(--color-christmas-glow);
-  color: var(--text-color);
+  color: var(--color-christmas);
+  -webkit-text-stroke-color: white;
 }
 
 .countdown-container.new-year {
-  --text-color: var(--color-new-year);
-  --glow-color: var(--color-new-year-glow);
+  color: var(--color-new-year);
 }
 
 .label,
-.time-before-next-event,
-.text-during-event {
-  text-shadow:
-    0 0 2px rgba(0, 0, 0, 0.7),
-    0 0 10px var(--glow-color),
-    0 0 26px var(--glow-color);
-}
-
-.label {
-  font-family: var(--font-space-grotesk), Arial, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
 .time-before-next-event {
   font-family: var(--font-space-grotesk), Arial, sans-serif;
   font-weight: 700;
+}
+
+.time-before-next-event {
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
 
+.digit-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  row-gap: 0.15em;
+  column-gap: 0.4em;
+}
+
+.digit-unit {
+  white-space: nowrap;
+}
+
 .text-during-event {
-  font-family: var(--font-great-vibes), cursive;
-  font-weight: 400;
+  font-family: var(--font-fraunces), serif;
+  font-style: italic;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -176,11 +136,17 @@ body {
 }
 
 .event-icon {
-  color: var(--text-color);
-  filter: drop-shadow(0 0 6px var(--glow-color));
   width: 1.2em;
   height: 1.2em;
   margin: 0 0.15em;
+}
+
+.event-icon--tree {
+  color: var(--color-tree);
+}
+
+.event-icon--champagne {
+  color: var(--color-champagne);
 }
 
 .flip-digit {
@@ -190,12 +156,6 @@ body {
   height: 1em;
   overflow: hidden;
   vertical-align: bottom;
-  /* text-shadow on .flip-digit-value would be clipped by the overflow:hidden
-     above; filter is not self-clipping, so the glow renders unclipped here. */
-  filter:
-    drop-shadow(0 0 2px rgba(0, 0, 0, 0.7))
-    drop-shadow(0 0 10px var(--glow-color))
-    drop-shadow(0 0 26px var(--glow-color));
 }
 
 .flip-digit-value {
@@ -204,20 +164,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-shadow: none;
 }
 
 @media screen and (min-width: 300px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.35px;
+  }
+
   .label, .icon-row { font-size: 1.25rem; }
   .time-before-next-event { font-size: 1.25rem; }
   .text-during-event { font-size: 3rem; }
   .flip-digit { font-size: 2.2275rem; }
+
   .icon-row, .label, .time-before-next-event, .text-during-event, .flip-digit {
     -webkit-text-size-adjust: none;
   }
 }
 
 @media screen and (min-width: 360px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.45px;
+  }
+
   .label, .icon-row { font-size: 1.4rem; }
   .time-before-next-event { font-size: 1.3rem; }
   .text-during-event { font-size: 4rem; }
@@ -232,6 +200,10 @@ body {
 }
 
 @media screen and (min-width: 400px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.5px;
+  }
+
   .label, .icon-row { font-size: 1.5rem; }
   .time-before-next-event { font-size: 1.75rem; }
   .text-during-event { font-size: 4.5rem; }
@@ -239,6 +211,10 @@ body {
 }
 
 @media screen and (min-width: 500px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.6px;
+  }
+
   .label, .icon-row { font-size: 1.6rem; }
   .time-before-next-event { font-size: 2rem; }
   .text-during-event { font-size: 5.5rem; }
@@ -246,6 +222,10 @@ body {
 }
 
 @media screen and (min-width: 600px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.7px;
+  }
+
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 2.5rem; }
   .text-during-event { font-size: 6.5rem; }
@@ -253,6 +233,10 @@ body {
 }
 
 @media screen and (min-width: 700px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 0.9px;
+  }
+
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 2.5rem; }
   .text-during-event { font-size: 7.8rem; }
@@ -260,6 +244,10 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 1px;
+  }
+
   .label, .icon-row { font-size: 2rem; }
   .time-before-next-event { font-size: 3rem; }
   .text-during-event { font-size: 9rem; }
@@ -267,6 +255,10 @@ body {
 }
 
 @media screen and (min-width: 1200px) {
+  .countdown-container {
+    -webkit-text-stroke-width: 1.5px;
+  }
+
   .label, .icon-row { font-size: 2.5rem; }
   .time-before-next-event { font-size: 3rem; }
   .text-during-event { font-size: 9rem; }
