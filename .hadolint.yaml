@@ -1,3 +1,9 @@
 override:
   style:
     - DL3006
+
+# USER root / USER $UID in the Dockerfile's production stage: hadolint can't
+# resolve the ARG-supplied UID at lint time to confirm it's numeric. Both are
+# intentional (root to chown, then drop to the build-time UID).
+ignored:
+  - DL3066
