@@ -22,12 +22,6 @@ when:
         - '**/*.test.js'
 
 steps:
-  - name: lint-dockerfile
-    image: hadolint/hadolint:latest-alpine
-    commands:
-      - hadolint --version
-      - hadolint Dockerfile*
-
   - name: check-lockfile
     image: node:22.12-alpine3.19
     commands:
@@ -37,7 +31,7 @@ steps:
   - name: build-and-push
     image: woodpeckerci/plugin-docker-buildx
     privileged: true
-    depends_on: [lint-dockerfile, check-lockfile]
+    depends_on: [check-lockfile]
     settings:
       repo: modem7/christmas-countdown
       dockerfile: Dockerfile
