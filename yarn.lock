@@ -2870,12 +2870,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:14.1.0":
-  version: 14.1.0
-  resolution: "framer-motion@npm:14.1.0"
+"framer-motion@npm:14.1.1":
+  version: 14.1.1
+  resolution: "framer-motion@npm:14.1.1"
   dependencies:
-    motion-dom: "npm:14.1.0"
-    motion-utils: "npm:14.1.0"
+    motion-dom: "npm:14.1.1"
+    motion-utils: "npm:14.1.1"
     tslib: "npm:^2.4.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
@@ -2885,7 +2885,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/cf167172d041c2d20d844da7aaba91826aa3767aafa2251acb43c6271294e5f60ea3ab99d198ff21521d1f72fc24aeb391ea7ff1faf54f80764ef3a76114966a
+  checksum: 10c0/87d8be3a09a08486bf90bf2bffbcb393c7c0c79ab0f31b6f8d17decaaeda55ce2b0bfcb28f344c38c5b008cdc0ea0609c1c6332f26367cc1f47adcaabab26172
   languageName: node
   linkType: hard
 
@@ -4001,27 +4001,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:14.1.0":
-  version: 14.1.0
-  resolution: "motion-dom@npm:14.1.0"
+"motion-dom@npm:14.1.1":
+  version: 14.1.1
+  resolution: "motion-dom@npm:14.1.1"
   dependencies:
-    motion-utils: "npm:14.1.0"
-  checksum: 10c0/ad5d65e10cd88b2e2f2d2728eb936c0607c8862b04246f8732dad07559ec632a09f5d5ee547afa08d4898ef0fd3fc8d3f5c1615e4d32bda477daac7017f2dd35
+    motion-utils: "npm:14.1.1"
+  checksum: 10c0/8b338801fc073d347fba07ebefcbc90a9bd46a87e390023f7e992e838723868330cf8cc4dd81a24c3e5f9b190008c73fd44dde6539b87f22fbdfd24c94c12365
   languageName: node
   linkType: hard
 
-"motion-utils@npm:14.1.0":
-  version: 14.1.0
-  resolution: "motion-utils@npm:14.1.0"
-  checksum: 10c0/d48bb8bf9e78af2ee9dd5b4f6ef54e4357b876b950be7be1216f40b7e8f080270109741a02ac168a9b202505a12e9809538c90e36821591dc2a2b8489a6048f2
+"motion-utils@npm:14.1.1":
+  version: 14.1.1
+  resolution: "motion-utils@npm:14.1.1"
+  checksum: 10c0/ee89684857aae2b02897d7297568e1e6dc6c1eec08c61533fbc0a9650de5d5c454aa888532b825baabac92defddecd364cbb8cd7fa63b2171152edf8f9f819f0
   languageName: node
   linkType: hard
 
 "motion@npm:^14.0.0":
-  version: 14.1.0
-  resolution: "motion@npm:14.1.0"
+  version: 14.1.1
+  resolution: "motion@npm:14.1.1"
   dependencies:
-    framer-motion: "npm:14.1.0"
+    framer-motion: "npm:14.1.1"
     tslib: "npm:^2.4.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
@@ -4031,7 +4031,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/515a1e78e4b810899436ad5a23862d190927533ea98c8c02f567e993c7b54d4b3b6d044a04d18fdff38fa52f7432600fc0ac2dec0267272bf7b393b66c0fc66f
+  checksum: 10c0/c223eea2127541d4ccc78890dfbd8dcd944533059ce09c16e049449039bdc15aca72bcca2df67abd03d85fbf6e6e964b2d95160334caa86a7395daa9bd8db539
   languageName: node
   linkType: hard
 
