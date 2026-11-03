@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:latest
 
 # build stage
-FROM node:24.22.2-alpine AS build-stage
+FROM node:26.13.0-alpine AS build-stage
 
 # Set environment variables for non-interactive npm installs
 ENV NPM_CONFIG_LOGLEVEL=warn
@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --chown=node package.json yarn.lock .yarnrc.yml ./
 COPY --chown=node .yarn/releases/ .yarn/releases/
 
-RUN corepack enable
+RUN npm install -g corepack@0.36.0 && corepack enable
 
 RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache \
     YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn install --immutable
