@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --chown=node package.json yarn.lock .yarnrc.yml ./
 COPY --chown=node .yarn/releases/ .yarn/releases/
 
-RUN npm install -g corepack && corepack enable
+RUN npm install -g corepack@0.36.0 && corepack enable
 
 RUN --mount=type=cache,mode=0777,target=/root/.yarn/berry/cache \
     YARN_CACHE_FOLDER=/root/.yarn/berry/cache yarn install --immutable
